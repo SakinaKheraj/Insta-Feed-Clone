@@ -1,0 +1,235 @@
+[
+  {
+    "id": "1",
+    "username": "nature_lover",
+    "userAvatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1444459094717-a3dd8d10dcb0?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Exploring the beautiful mountains today! #nature #hiking",
+    "likes": 1245,
+    "comments": 42,
+    "isLiked": false,
+    "isSaved": false,
+    "isVerified": false,
+    "timestamp": "2023-10-27T10:30:00Z"
+  },
+  {
+    "id": "2",
+    "username": "natgeo",
+    "userAvatar": "https://images.unsplash.com/photo-1532667449560-72a95c8d381b?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "A lone leopard rests in the golden hour light of the savanna. Photography by @wildlife_shooter.",
+    "likes": 84210,
+    "comments": 312,
+    "isLiked": true,
+    "isSaved": false,
+    "isVerified": true,
+    "timestamp": "2023-10-27T08:15:00Z"
+  },
+  {
+    "id": "3",
+    "username": "foodie_eats",
+    "userAvatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Best brunch spots in the city! Which one is your favorite?",
+    "likes": 432,
+    "comments": 15,
+    "isLiked": false,
+    "isSaved": true,
+    "isVerified": false,
+    "timestamp": "2023-10-26T12:00:00Z"
+  },
+  {
+    "id": "4",
+    "username": "architecture_hunter",
+    "userAvatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Incredible lines and geometry in modern urban design. ",
+    "likes": 5600,
+    "comments": 95,
+    "isLiked": false,
+    "isSaved": false,
+    "isVerified": true,
+    "timestamp": "2023-10-26T09:45:00Z"
+  },
+  {
+    "id": "5",
+    "username": "puppy_love",
+    "userAvatar": "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Good morning!",
+    "likes": 12050,
+    "comments": 420,
+    "isLiked": true,
+    "isSaved": false,
+    "isVerified": false,
+    "timestamp": "2023-10-25T07:30:00Z"
+  },
+  {
+    "id": "6",
+    "username": "art_daily",
+    "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1578926288207-a90a5366759d?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Abstract expressions. What do you see in these paintings?",
+    "likes": 2341,
+    "comments": 88,
+    "isLiked": false,
+    "isSaved": true,
+    "isVerified": false,
+    "timestamp": "2023-10-25T14:20:00Z"
+  },
+  {
+    "id": "7",
+    "username": "tech_reviews",
+    "userAvatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511385348-a52b4a160dc2?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Is this the best workstation setup for 2023? Drop your thoughts below! 💻⌨️",
+    "likes": 4012,
+    "comments": 230,
+    "isLiked": false,
+    "isSaved": false,
+    "isVerified": true,
+    "timestamp": "2023-10-24T18:00:00Z"
+  },
+  {
+    "id": "8",
+    "username": "fitness_journey",
+    "userAvatar": "https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Never skip leg day! Staying consistent is key to progress.",
+    "likes": 3200,
+    "comments": 45,
+    "isLiked": false,
+    "isSaved": false,
+    "isVerified": false,
+    "timestamp": "2023-10-24T06:00:00Z"
+  },
+  {
+    "id": "9",
+    "username": "vintage_cars",
+    "userAvatar": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1503371402241-1191adba365f?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Classic beauty caught on the streets.",
+    "likes": 8900,
+    "comments": 150,
+    "isLiked": true,
+    "isSaved": true,
+    "isVerified": false,
+    "timestamp": "2023-10-23T16:45:00Z"
+  },
+  {
+    "id": "10",
+    "username": "minimalist_home",
+    "userAvatar": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Keep it simple. Less is more.",
+    "likes": 14500,
+    "comments": 310,
+    "isLiked": false,
+    "isSaved": true,
+    "isVerified": true,
+    "timestamp": "2023-10-23T11:10:00Z"
+  },
+  {
+    "id": "11",
+    "username": "wanderlust_vibes",
+    "userAvatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Road trip memories across the grand canyon! 🌄 Which view is your fav?",
+    "likes": 12450,
+    "comments": 89,
+    "isLiked": false,
+    "isSaved": false,
+    "isVerified": true,
+    "timestamp": "2023-10-22T08:00:00Z"
+  },
+  {
+    "id": "12",
+    "username": "sneaker_head",
+    "userAvatar": "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1552346154-21d32810baa3?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Fresh out the box.",
+    "likes": 5670,
+    "comments": 234,
+    "isLiked": false,
+    "isSaved": false,
+    "isVerified": false,
+    "timestamp": "2023-10-22T14:30:00Z"
+  },
+  {
+    "id": "13",
+    "username": "daily_coffee",
+    "userAvatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1444418185997-1145401101e0?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Latte art perfection",
+    "likes": 890,
+    "comments": 12,
+    "isLiked": true,
+    "isSaved": false,
+    "isVerified": false,
+    "timestamp": "2023-10-21T07:15:00Z"
+  },
+  {
+    "id": "14",
+    "username": "space_explore",
+    "userAvatar": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Looking at Earth from the ISS. Breathtaking.",
+    "likes": 34000,
+    "comments": 1200,
+    "isLiked": false,
+    "isSaved": true,
+    "isVerified": true,
+    "timestamp": "2023-10-21T18:00:00Z"
+  },
+  {
+    "id": "15",
+    "username": "skate_life",
+    "userAvatar": "https://images.unsplash.com/photo-1563805042-7684c8a9e9c2?auto=format&fit=crop&w=200&q=80",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "caption": "Sunset sessions at the local park.",
+    "likes": 2100,
+    "comments": 34,
+    "isLiked": false,
+    "isSaved": false,
+    "isVerified": false,
+    "timestamp": "2023-10-20T19:20:00Z"
+  }
+]
