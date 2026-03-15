@@ -40,7 +40,7 @@ class StoryTray extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Colors.white24, // Subtle divider line
+            color: Colors.white24, 
             width: 0.5,
           ),
         ),
@@ -98,16 +98,16 @@ class StoryTray extends StatelessWidget {
                     if (isUser)
                       Positioned(
                         bottom: 0,
-                        right: 0,
+                        right: 15,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Colors.white,
                             shape: BoxShape.circle,
-                            border: Border.all(color: Colors.black, width: 2),
+                            border: Border.all(color: Colors.black, width: 2), 
                           ),
                           child: const Icon(
                             Icons.add,
-                            color: Colors.white,
+                            color: Colors.black,
                             size: 18,
                           ),
                         ),
@@ -117,7 +117,7 @@ class StoryTray extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text(
                   story['username']!,
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                  style: const TextStyle(color: Colors.white, fontSize: 14),
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
