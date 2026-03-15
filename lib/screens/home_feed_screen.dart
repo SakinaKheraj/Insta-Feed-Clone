@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import 'package:insta_feed_clone/widgets/story_tray.dart';
 import 'package:insta_feed_clone/widgets/post_card.dart';
@@ -19,14 +21,12 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
   @override
   void initState() {
     super.initState();
-    // Fetch initial posts on load
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<PostProvider>().fetchPosts();
     });
 
     // Setup infinite scroll listener
     _scrollController.addListener(() {
-      // Trigger when user is close to the bottom (e.g., 2 posts away approx 800px)
       if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 800) {
         final provider = context.read<PostProvider>();
         if (!provider.isFetchingMore && provider.hasMore) {
@@ -53,14 +53,23 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.add, size: 28)),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.favorite_border, size: 28),
+            icon: const Icon(Icons.favorite_border, size: 27),
+            tooltip: 'Notifications',
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 4),
+            child: IconButton(
+              onPressed: () {},
+              icon: const FaIcon(FontAwesomeIcons.facebookMessenger, size: 24),
+              tooltip: 'Messages',
+            ),
           ),
         ],
-        centerTitle: true,
+        centerTitle: false,
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: Colors.black,
@@ -68,7 +77,6 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
       body: Consumer<PostProvider>(
         builder: (context, provider, child) {
           if (provider.isLoading && provider.posts.isEmpty) {
-            // Highly preferred Shimmer effect for initial loading
             return const ShimmerFeed();
           }
           
@@ -107,6 +115,53 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
             },
           );
         },
+      ),
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.black,
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          elevation: 0,
+          items: [
+            const BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.house, color: Colors.white, size: 22),
+              label: 'Home',
+            ),
+            const BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.circlePlay, color: Colors.white, size: 22),
+              label: 'Reels',
+            ),
+            const BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.paperPlane, color: Colors.white, size: 22),
+              label: 'Message',
+            ),
+            const BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.magnifyingGlass, color: Colors.white, size: 22),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Container(
+                width: 28,
+                height: 28,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      'https://plus.unsplash.com/premium_photo-1701065893190-46f44657fbee?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGluc3RhZ3JhbSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              label: 'Profile',
+            ),
+          ],
+        ),
       ),
     );
   }

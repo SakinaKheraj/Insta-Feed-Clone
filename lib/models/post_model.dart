@@ -6,6 +6,8 @@ class PostModel {
   final String caption;
   final int likes;
   final int comments;
+  final int reshares;
+  final int shares;
   final bool isLiked;
   final bool isSaved;
   final bool isVerified;
@@ -19,6 +21,8 @@ class PostModel {
     required this.caption,
     required this.likes,
     required this.comments,
+    this.reshares = 0,
+    this.shares = 0,
     required this.isLiked,
     required this.isSaved,
     required this.isVerified,
@@ -41,6 +45,8 @@ class PostModel {
       caption: json['caption'] ?? '',
       likes: json['likes'] ?? 0,
       comments: json['comments'] ?? 0,
+      reshares: json['reshares'] ?? 0,
+      shares: json['shares'] ?? 0,
       isLiked: json['isLiked'] ?? false,
       isSaved: json['isSaved'] ?? false,
       isVerified: json['isVerified'] ?? false,
@@ -59,6 +65,8 @@ class PostModel {
       'caption': caption,
       'likes': likes,
       'comments': comments,
+      'reshares': reshares,
+      'shares': shares,
       'isLiked': isLiked,
       'isSaved': isSaved,
       'isVerified': isVerified,
@@ -79,6 +87,8 @@ class PostModel {
       caption: caption,
       likes: likes ?? this.likes,
       comments: comments,
+      reshares: reshares,
+      shares: shares,
       isLiked: isLiked ?? this.isLiked,
       isSaved: isSaved ?? this.isSaved,
       isVerified: isVerified,

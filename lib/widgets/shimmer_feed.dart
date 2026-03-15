@@ -51,7 +51,7 @@ class ShimmerFeed extends StatelessWidget {
           // Shimmer for Posts
           Expanded(
             child: ListView.builder(
-              itemCount: 2, // Show a couple of skeleton posts
+              itemCount: 2, 
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return const ShimmerPostCard();

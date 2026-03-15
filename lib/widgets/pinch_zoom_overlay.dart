@@ -15,117 +15,160 @@ class PinchZoomOverlay extends StatefulWidget {
   State<PinchZoomOverlay> createState() => _PinchZoomOverlayState();
 }
 
-class _PinchZoomOverlayState extends State<PinchZoomOverlay> with SingleTickerProviderStateMixin {
-  late TransformationController _transformationController;
-  late AnimationController _animationController;
-  Animation<Matrix4>? _animation;
-  OverlayEntry? _overlayEntry;
+class _PinchZoomOverlayState extends State<PinchZoomOverlay>
+    with SingleTickerProviderStateMixin {
+  int _pointerCount = 0;
+  bool _zoomActive = false;
+
+  Matrix4 _transform = Matrix4.identity();
+  Rect _childRect = Rect.zero;
+
+  late AnimationController _animController;
+  Animation<Matrix4>? _resetAnim;
+
+  OverlayEntry? _overlay;
 
   @override
   void initState() {
     super.initState();
-    _transformationController = TransformationController();
-    _animationController = AnimationController(
+    _animController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 200),
-    )..addListener(() {
-        _transformationController.value = _animation!.value;
-      });
+      duration: const Duration(milliseconds: 280),
+    )..addListener(_onAnimTick);
   }
 
   @override
   void dispose() {
-    _transformationController.dispose();
-    _animationController.dispose();
+    _animController.dispose();
     _removeOverlay();
     super.dispose();
   }
 
+  void _onAnimTick() {
+    if (_resetAnim == null) return;
+    _transform = _resetAnim!.value;
+    _overlay?.markNeedsBuild();
+  }
+
+  void _captureChildRect(BuildContext context) {
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
+    final offset = box.localToGlobal(Offset.zero);
+    _childRect = offset & box.size;
+  }
+
   void _showOverlay(BuildContext context) {
-    if (_overlayEntry != null) return;
+    if (_overlay != null) return;
+    _captureChildRect(context);
+    _overlay = OverlayEntry(builder: _buildOverlay);
+    Overlay.of(context).insert(_overlay!);
+  }
 
-    final renderBox = context.findRenderObject() as RenderBox;
-    final offset = renderBox.localToGlobal(Offset.zero);
-    final size = renderBox.size;
-
-    _overlayEntry = OverlayEntry(
-      builder: (context) {
-        return Positioned(
-          left: offset.dx,
-          top: offset.dy,
-          width: size.width,
-          height: size.height,
+  Widget _buildOverlay(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned.fill(
           child: IgnorePointer(
-            child: Container(
-              color: Colors.transparent,
-              child: InteractiveViewer(
-                transformationController: _transformationController,
-                panEnabled: false,
-                clipBehavior: Clip.none,
-                minScale: 1.0,
-                maxScale: 4.0,
-                onInteractionEnd: (details) {
-                  _resetAnimation();
-                },
-                child: CachedNetworkImage(
-                  imageUrl: widget.imageUrl,
-                  fit: BoxFit.cover,
-                ),
+            child: Builder(builder: (_) {
+              final scale = _transform.getMaxScaleOnAxis();
+              final opacity = ((scale - 1.0) / 2.5).clamp(0.0, 0.65);
+              return ColoredBox(color: Colors.black.withOpacity(opacity));
+            }),
+          ),
+        ),
+
+        Positioned(
+          left: _childRect.left,
+          top: _childRect.top,
+          width: _childRect.width,
+          height: _childRect.height,
+          child: IgnorePointer(
+            child: Transform(
+              transform: _transform,
+              child: CachedNetworkImage(
+                imageUrl: widget.imageUrl,
+                fit: BoxFit.cover,
+                width: _childRect.width,
+                height: _childRect.height,
               ),
             ),
           ),
-        );
-      },
+        ),
+      ],
     );
-
-    Overlay.of(context).insert(_overlayEntry!);
   }
 
   void _removeOverlay() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
+    _overlay?.remove();
+    _overlay = null;
   }
 
-  void _resetAnimation() {
-    _animation = Matrix4Tween(
-      begin: _transformationController.value,
+  void _animateReset() {
+    _resetAnim = Matrix4Tween(
+      begin: _transform,
       end: Matrix4.identity(),
     ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
+      parent: _animController,
+      curve: Curves.easeOutCubic,
     ));
-    _animationController.forward(from: 0).whenComplete(() {
+
+    _animController.forward(from: 0).whenComplete(() {
       _removeOverlay();
+      _transform = Matrix4.identity();
+      _zoomActive = false;
     });
   }
 
+
+  void _onScaleStart(ScaleStartDetails details, BuildContext ctx) {
+    if (_pointerCount < 2) return; 
+    _animController.stop();
+    _resetAnim = null;
+    _transform = Matrix4.identity();
+    _zoomActive = true;
+    _showOverlay(ctx);
+  }
+
+  void _onScaleUpdate(ScaleUpdateDetails details) {
+    if (!_zoomActive) return;
+    if (details.scale == 1.0 && _pointerCount < 2) return;
+
+    final focalX = details.focalPoint.dx - _childRect.left;
+    final focalY = details.focalPoint.dy - _childRect.top;
+
+    _transform = Matrix4.identity()
+      ..translate(focalX, focalY)
+      ..scale(details.scale.clamp(1.0, 5.0))
+      ..translate(-focalX, -focalY);
+
+    _overlay?.markNeedsBuild();
+  }
+
+  void _onScaleEnd(ScaleEndDetails details) {
+    if (!_zoomActive) return;
+    _animateReset();
+  }
+
+  // ── Build ─────────────────────────────────────────────────────────────────
+
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return GestureDetector(
-          onScaleStart: (details) {
-            _showOverlay(context);
-            // Manually feed the initial scale gesture to the TransformationController
-            _transformationController.value = Matrix4.identity()
-              ..translate(details.focalPoint.dx, details.focalPoint.dy)
-              ..scale(1.0)
-              ..translate(-details.focalPoint.dx, -details.focalPoint.dy);
-          },
-          onScaleUpdate: (details) {
-            if (_overlayEntry != null) {
-              _transformationController.value = Matrix4.identity()
-                ..translate(details.focalPoint.dx, details.focalPoint.dy)
-                ..scale(details.scale)
-                ..translate(-details.focalPoint.dx, -details.focalPoint.dy);
-            }
-          },
-          onScaleEnd: (details) {
-            _resetAnimation();
-          },
-          child: widget.child,
-        );
+    return Listener(
+      onPointerDown: (_) => _pointerCount++,
+      onPointerUp: (_) {
+        _pointerCount = (_pointerCount - 1).clamp(0, 10);
       },
+      onPointerCancel: (_) {
+        _pointerCount = (_pointerCount - 1).clamp(0, 10);
+      },
+      child: Builder(
+        builder: (ctx) => GestureDetector(
+          onScaleStart: (d) => _onScaleStart(d, ctx),
+          onScaleUpdate: _onScaleUpdate,
+          onScaleEnd: _onScaleEnd,
+          child: widget.child,
+        ),
+      ),
     );
   }
 }

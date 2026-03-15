@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class StoryTray extends StatelessWidget {
   const StoryTray({super.key});
@@ -88,7 +89,7 @@ class StoryTray extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: CircleAvatar(
-                              backgroundImage: NetworkImage(story['avatar']!),
+                              backgroundImage: CachedNetworkImageProvider(story['avatar']!),
                               backgroundColor: Colors.grey[800],
                             ),
                           ),

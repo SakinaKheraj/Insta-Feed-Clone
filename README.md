@@ -38,10 +38,13 @@ lib/
       ├── post_carousel.dart
       ├── shimmer_feed.dart
       └── story_tray.dart
-```
+---
 
 ## 🚀 How to Run
 
 1. Clone the repository.
-2. Run `flutter pub get` to download dependencies.
-3. Start the application on iOS, Android, macOS, or Windows using `flutter run` or the Play button in your IDE.
+2. Run `flutter pub get` to install all dependencies.
+3. Connect a device or start an emulator.
+4. Run `flutter run` (or press the Run button in VS Code / Android Studio).
+
+> Tested on Android, iOS, and macOS. Requires Flutter SDK ≥ 3.10.
